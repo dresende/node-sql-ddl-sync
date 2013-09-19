@@ -28,7 +28,7 @@ and run the code again. Your table should always return to the same structure.
 var mysql = require("mysql");
 var db    = mysql.createConnection("mysql://username:password@localhost/database");
 
-var Sync = require("./lib/Sync").Sync;
+var Sync = require("sql-ddl-sync").Sync;
 var sync = new Sync({
 	dialect : "mysql",
 	db      : db,
