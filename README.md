@@ -11,6 +11,7 @@ npm install sql-ddl-sync
 ## Dialects
 
 - MySQL
+- PostgreSQL
 
 ## About
 
