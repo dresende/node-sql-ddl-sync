@@ -190,3 +190,31 @@ describe("Dropping an index", function () {
 		});
 	});
 });
+
+describe("Changing index to unique index", function () {
+	before(function (done) {
+		common.dropIndex('dttm_index')(function () {
+			common.addIndex('dttm_index', 'dttm', true)(done);
+		});
+	});
+
+	it("should drop index and recreate it on first call", function (done) {
+		sync.sync(function (err, info) {
+			should.not.exist(err);
+			should.exist(info);
+			info.should.have.property("changes", 1);
+
+			return done();
+		});
+	});
+
+	it("should have no changes on second call", function (done) {
+		sync.sync(function (err, info) {
+			should.not.exist(err);
+			should.exist(info);
+			info.should.have.property("changes", 0);
+
+			return done();
+		});
+	});
+});

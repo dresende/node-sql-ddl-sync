@@ -43,13 +43,13 @@ exports.changeColumn = function (column) {
 	};
 };
 
-exports.addIndex = function (name, column) {
+exports.addIndex = function (name, column, unique) {
 	return function (done) {
 		switch (exports.dialect) {
 			case "mysql":
-				return exports.db.query("CREATE INDEX ?? ON ?? (??)", [ name, exports.table, column ], done);
+				return exports.db.query("CREATE " + (unique ? "UNIQUE" : "") + " INDEX ?? ON ?? (??)", [ name, exports.table, column ], done);
 			case "postgresql":
-				return exports.db.query("CREATE INDEX " + name + " ON " + exports.table + " (" + column + ")", done);
+				return exports.db.query("CREATE " + (unique ? "UNIQUE" : "") + " INDEX " + exports.table + "_" + name + " ON " + exports.table + " (" + column + ")", done);
 		}
 		return done(unknownProtocol());
 	};
