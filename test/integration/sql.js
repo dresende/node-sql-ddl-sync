@@ -85,3 +85,37 @@ describe("SQL.ALTER_TABLE_DROP_COLUMN", function () {
 		return done();
 	});
 });
+
+describe("SQL.CREATE_INDEX", function () {
+	it("should return an CREATE INDEX", function (done) {
+		SQL.CREATE_INDEX({
+			name       : "fake_index",
+			collection : "fake_table",
+			columns    : [ "my_fake_column" ]
+		}, Dialect).should.equal("CREATE INDEX $$fake_index$$ ON $$fake_table$$ ($$my_fake_column$$)");
+
+		return done();
+	});
+
+	it("should return an CREATE UNIQUE INDEX if unique passed", function (done) {
+		SQL.CREATE_INDEX({
+			name       : "fake_index",
+			collection : "fake_table",
+			unique     : true,
+			columns    : [ "my_fake_column" ]
+		}, Dialect).should.equal("CREATE UNIQUE INDEX $$fake_index$$ ON $$fake_table$$ ($$my_fake_column$$)");
+
+		return done();
+	});
+});
+
+describe("SQL.DROP_INDEX", function () {
+	it("should return an DROP INDEX", function (done) {
+		SQL.DROP_INDEX({
+			name       : "fake_index",
+			collection : "fake_table"
+		}, Dialect).should.equal("DROP INDEX $$fake_index$$ ON $$fake_table$$");
+
+		return done();
+	});
+});
