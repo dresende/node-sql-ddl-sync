@@ -9,7 +9,10 @@ var mocha    = new Mocha({
 });
 
 fs.readdirSync(location).filter(function (file) {
-	return file.substr(-3) === '.js';
+	if (file == "db.js") {
+		return false;
+	}
+	return (file.substr(-3) === '.js');
 }).forEach(function (file) {
 	mocha.addFile(
 		path.join(location, file)
