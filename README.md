@@ -67,3 +67,32 @@ sync.sync(function (err) {
 });
 
 ```
+
+## Test
+
+To test, first make sure you have development dependencies installed. Go to the root folder and do:
+
+```sh
+npm install
+```
+
+Then, just run the tests.
+
+```sh
+npm test
+```
+
+If you have a supported database server and want to test against it, first install the module:
+
+```sh
+# if you have a mysql server
+npm install mysql
+# if you have a postgresql server
+npm install pg
+```
+
+And then run:
+
+```sh
+node test/run-db --uri 'mysql://username:password@localhost/database'
+```
