@@ -35,6 +35,14 @@ switch (uri.protocol) {
 		common.db = new (require("pg").Client)(uri);
 		common.db.connect(testDatabase);
 		break;
+	case "sqlite:":
+	case "sqlite3:":
+		common.dialect = "sqlite";
+
+		common.db = new (require("sqlite3").Database)(uri.pathname);
+		testDatabase();
+		// common.db.connect(testDatabase);
+		break;
 	default:
 		process.stdout.write("Database protocol not supported.\n");
 		process.exit(2);

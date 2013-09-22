@@ -47,77 +47,79 @@ describe("Synching", function () {
 	});
 });
 
-describe("Dropping a column", function () {
-	before(common.dropColumn('dt'));
+if (common.dialect != "sqlite") {
+	describe("Dropping a column", function () {
+		before(common.dropColumn('dt'));
 
-	it("should recreate it on first call", function (done) {
-		sync.sync(function (err, info) {
-			should.not.exist(err);
-			should.exist(info);
-			info.should.have.property("changes", 1);
+		it("should recreate it on first call", function (done) {
+			sync.sync(function (err, info) {
+				should.not.exist(err);
+				should.exist(info);
+				info.should.have.property("changes", 1);
 
-			return done();
+				return done();
+			});
+		});
+
+		it("should have no changes on second call", function (done) {
+			sync.sync(function (err, info) {
+				should.not.exist(err);
+				should.exist(info);
+				info.should.have.property("changes", 0);
+
+				return done();
+			});
 		});
 	});
 
-	it("should have no changes on second call", function (done) {
-		sync.sync(function (err, info) {
-			should.not.exist(err);
-			should.exist(info);
-			info.should.have.property("changes", 0);
+	describe("Dropping a column that has an index", function () {
+		before(common.dropColumn('dttm'));
 
-			return done();
+		it("should recreate column and index on first call", function (done) {
+			sync.sync(function (err, info) {
+				should.not.exist(err);
+				should.exist(info);
+				info.should.have.property("changes", 2);
+
+				return done();
+			});
 		});
-	});
-});
 
-describe("Dropping a column that has an index", function () {
-	before(common.dropColumn('dttm'));
+		it("should have no changes on second call", function (done) {
+			sync.sync(function (err, info) {
+				should.not.exist(err);
+				should.exist(info);
+				info.should.have.property("changes", 0);
 
-	it("should recreate column and index on first call", function (done) {
-		sync.sync(function (err, info) {
-			should.not.exist(err);
-			should.exist(info);
-			info.should.have.property("changes", 2);
-
-			return done();
-		});
-	});
-
-	it("should have no changes on second call", function (done) {
-		sync.sync(function (err, info) {
-			should.not.exist(err);
-			should.exist(info);
-			info.should.have.property("changes", 0);
-
-			return done();
-		});
-	});
-});
-
-describe("Adding a column", function () {
-	before(common.addColumn('unknown_col'));
-
-	it("should drop column on first call", function (done) {
-		sync.sync(function (err, info) {
-			should.not.exist(err);
-			should.exist(info);
-			info.should.have.property("changes", 1);
-
-			return done();
+				return done();
+			});
 		});
 	});
 
-	it("should have no changes on second call", function (done) {
-		sync.sync(function (err, info) {
-			should.not.exist(err);
-			should.exist(info);
-			info.should.have.property("changes", 0);
+	describe("Adding a column", function () {
+		before(common.addColumn('unknown_col'));
 
-			return done();
+		it("should drop column on first call", function (done) {
+			sync.sync(function (err, info) {
+				should.not.exist(err);
+				should.exist(info);
+				info.should.have.property("changes", 1);
+
+				return done();
+			});
+		});
+
+		it("should have no changes on second call", function (done) {
+			sync.sync(function (err, info) {
+				should.not.exist(err);
+				should.exist(info);
+				info.should.have.property("changes", 0);
+
+				return done();
+			});
 		});
 	});
-});
+}
 
 describe("Changing a column", function () {
 	before(common.changeColumn('int4'));
