@@ -5,9 +5,9 @@ var should  = require("should");
 
 describe("PostgreSQL.getType", function () {
 	it("should detect text", function (done) {
-		Dialect.getType(null, null, { type: "text" }).value.should.equal("VARCHAR(255)");
-		Dialect.getType(null, null, { type: "text", size: 150 }).value.should.equal("VARCHAR(150)");
-		Dialect.getType(null, null, { type: "text", size: 1000 }).value.should.equal("VARCHAR(1000)");
+		Dialect.getType(null, null, { type: "text" }).value.should.equal("TEXT");
+		Dialect.getType(null, null, { type: "text", size: 150 }).value.should.equal("TEXT");
+		Dialect.getType(null, null, { type: "text", size: 1000 }).value.should.equal("TEXT");
 
 		return done();
 	});
