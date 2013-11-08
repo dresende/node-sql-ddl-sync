@@ -14,7 +14,7 @@
 		"lodash"        : "2.2.1"
 	},
 	"devDependencies" : {
-		"mocha"         : "1.12.1",
+		"mocha"         : "1.14.0",
 		"should"        : "1.2.2",
 		"commander"     : "~2.0.0"
 	}
