@@ -40,7 +40,7 @@ var sync = new Sync({
 	}
 });
 
-sync.define("ddl_sync_test", {
+sync.defineCollection("ddl_sync_test", {
 	id     : { type : "number", primary: true, serial: true },
 	name   : { type : "text", required: true },
 	age    : { type : "number", rational: true },
