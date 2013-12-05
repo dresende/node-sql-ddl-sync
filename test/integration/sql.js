@@ -29,6 +29,17 @@ describe("SQL.CREATE_TABLE", function () {
 	});
 });
 
+describe("SQL.DROP_TABLE", function () {
+	it("should return a DROP TABLE", function (done) {
+		SQL.DROP_TABLE({
+			name    : "fake_table"
+		}, Dialect).should.equal("DROP TABLE $$fake_table$$");
+
+		return done();
+	});
+});
+
+
 describe("SQL.ALTER_TABLE_ADD_COLUMN", function () {
 	it("should return an ALTER TABLE", function (done) {
 		SQL.ALTER_TABLE_ADD_COLUMN({
