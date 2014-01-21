@@ -10,7 +10,7 @@ describe("SQL.CREATE_TABLE", function () {
 		SQL.CREATE_TABLE({
 			name    : "fake_table",
 			columns : [ "first_fake_column", "second_fake_column" ],
-			primary : [ "my_primary_key" ]
+			keys    : [ "my_primary_key" ]
 		}, Dialect).should.equal("CREATE TABLE $$fake_table$$ (first_fake_column, second_fake_column, " +
 		                         "PRIMARY KEY ($$my_primary_key$$))");
 
