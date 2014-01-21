@@ -10,7 +10,7 @@ var sync    = new Sync({
 });
 
 sync.defineCollection(common.table, {
-	id     : { type: "number", primary: true, serial: true },
+	id     : { type: "number", key: true, serial: true },
 	name   : { type: "text", required: true, defaultValue: 'John' },
 	age    : { type: "number", rational: true },
 	male   : { type: "boolean" },
