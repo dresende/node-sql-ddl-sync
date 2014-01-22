@@ -1,7 +1,6 @@
 var program = require("commander");
 var Mocha   = require("mocha");
-var url     = require("url");
-
+var orm     = require("orm");
 var common  = require("./common");
 
 program.version("0.1.0")
@@ -13,49 +12,24 @@ if (!program.uri) {
 	process.exit(1);
 }
 
-var uri = url.parse(program.uri);
+var uri = program.uri;
 
 if (!uri.hasOwnProperty("protocol") || !uri.protocol) {
 	program.outputHelp();
 	process.exit(1);
 }
 
-switch (uri.protocol) {
-	case "mysql:":
-		common.dialect = "mysql";
+orm.connect(uri, function (err, db) {
+	if (err) throw err;
 
-		common.db = require("mysql").createConnection(program.uri);
-		common.db.connect(testDatabase);
-		break;
-	case "postgres:":
-	case "postgresql:":
-	case "pg:":
-		common.dialect = "postgresql";
+	common.driver = db.driver;
 
-		common.db = new (require("pg").Client)(uri);
-		common.db.connect(testDatabase);
-		break;
-	case "sqlite:":
-	case "sqlite3:":
-		common.dialect = "sqlite";
+	testDatabase()
+});
 
-		common.db = new (require("sqlite3").Database)(uri.pathname);
-		testDatabase();
-		// common.db.connect(testDatabase);
-		break;
-	default:
-		process.stdout.write("Database protocol not supported.\n");
-		process.exit(2);
-}
+function testDatabase() {
+	var mocha    = new Mocha({ reporter : "spec" });
 
-function testDatabase(err) {
-	if (err) {
-		throw err;
-	}
-
-	var mocha    = new Mocha({
-		reporter : "spec"
-	});
 	mocha.addFile(__dirname + "/integration/db.js");
 	mocha.run(function (failures) {
 		process.exit(failures);

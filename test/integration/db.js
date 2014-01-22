@@ -2,8 +2,7 @@ var Sync    = require("../../lib/Sync").Sync;
 var common  = require("../common");
 var should  = require("should");
 var sync    = new Sync({
-	dialect : common.dialect,
-	db      : common.db,
+	driver  : common.driver,
 	debug   : function (text) {
 		// console.log("> %s", text);
 	}
