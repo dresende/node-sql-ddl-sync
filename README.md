@@ -17,53 +17,58 @@ npm install sql-ddl-sync
 
 ## About
 
-This module is used by [ORM](http://dresende.github.com/node-orm2) to synchronize model tables in the different supported
-dialects. Sorry there is no API documentation for now but there are a couple of tests you can read and find out how to use
-it if you want.
+This module is part of [ORM](http://dresende.github.com/node-orm2). It's used synchronize model tables in supported dialects.
+Sorry there is no API documentation for now but there are a couple of tests you can read and find out how to use it if you want.
 
 ## Example
 
-Install module and install `mysql`, create a file with the contents below and change line 2 to match valid credentials.
+Install `orm` & the required driver (eg: `mysql`).
+Create a file with the contents below and change insert your database credentials.
 Run once and you'll see table `ddl_sync_test` appear in your database. Then make some changes to it (add/drop/change columns)
 and run the code again. Your table should always return to the same structure.
 
 ```js
-var mysql = require("mysql");
-var db    = mysql.createConnection("mysql://username:password@localhost/database");
+var orm    = require("orm");
+var mysql  = require("mysql");
+var Sync   = require("sql-ddl-sync").Sync;
 
-var Sync = require("sql-ddl-sync").Sync;
-var sync = new Sync({
-	dialect : "mysql",
-	db      : db,
-	debug   : function (text) {
-		console.log("> %s", text);
-	}
-});
+orm.connect("mysql://username:password@localhost/database", function (err, db) {
+	if (err) throw err;
+	var driver = db.driver;
 
-sync.defineCollection("ddl_sync_test", {
-	id     : { type : "number", primary: true, serial: true },
-	name   : { type : "text", required: true },
-	age    : { type : "number", rational: true },
-	male   : { type : "boolean" },
-	born   : { type : "date", time: true },
-	born2  : { type : "date" },
-	int2   : { type : "number", size: 2 },
-	int4   : { type : "number", size: 4 },
-	int8   : { type : "number", size: 8 },
-	float4 : { type : "number", rational: true, size: 4 },
-	float8 : { type : "number", rational: true, size: 8 },
-	type   : { type : "enum", values: [ 'dog', 'cat'], defaultValue: 'dog', required: true },
-	photo  : { type : "binary" }
-});
+	var sync = new Sync({
+		dialect : "mysql",
+		driver  : driver,
+		debug   : function (text) {
+			console.log("> %s", text);
+		}
+	});
 
-sync.sync(function (err) {
-	if (err) {
-		console.log("> Sync Error");
-		console.log(err);
-	} else {
-		console.log("> Sync Done");
-	}
-	process.exit(0);
+	sync.defineCollection("ddl_sync_test", {
+		id     : { type : "number", primary: true, serial: true },
+		name   : { type : "text", required: true },
+		age    : { type : "number", rational: true },
+		male   : { type : "boolean" },
+		born   : { type : "date", time: true },
+		born2  : { type : "date" },
+		int2   : { type : "number", size: 2 },
+		int4   : { type : "number", size: 4 },
+		int8   : { type : "number", size: 8 },
+		float4 : { type : "number", rational: true, size: 4 },
+		float8 : { type : "number", rational: true, size: 8 },
+		type   : { type : "enum", values: [ 'dog', 'cat'], defaultValue: 'dog', required: true },
+		photo  : { type : "binary" }
+	});
+
+	sync.sync(function (err) {
+		if (err) {
+			console.log("> Sync Error");
+			console.log(err);
+		} else {
+			console.log("> Sync Done");
+		}
+		process.exit(0);
+	});
 });
 
 ```
