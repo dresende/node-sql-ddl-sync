@@ -17,6 +17,6 @@
 		"mocha"         : "1.14.0",
 		"should"        : "2.0.2",
 		"commander"     : "~2.0.0",
-		"orm"           : "git://github.com/dresende/node-orm2.git#new-sql-ddl-sync"
+		"orm"           : "git://github.com/dresende/node-orm2.git"
 	}
 }
