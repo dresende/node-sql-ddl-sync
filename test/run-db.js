@@ -2,6 +2,7 @@ var program = require("commander");
 var Mocha   = require("mocha");
 var orm     = require("orm");
 var common  = require("./common");
+var url     = require("url");
 
 program.version("0.1.0")
        .option("-u, --uri <uri>", "Database URI", String, null)
@@ -12,7 +13,7 @@ if (!program.uri) {
 	process.exit(1);
 }
 
-var uri = program.uri;
+var uri = url.parse(program.uri);
 
 if (!uri.hasOwnProperty("protocol") || !uri.protocol) {
 	program.outputHelp();
