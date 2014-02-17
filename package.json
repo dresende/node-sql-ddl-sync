@@ -5,7 +5,7 @@
 	"keywords"        : [ "sql", "ddl", "sync", "mysql", "postgres", "sqlite" ],
 	"version"         : "0.2.0",
 	"license"         : "MIT",
-	"repository"      : "http://github.com/locomote/node-sql-ddl-sync.git",
+	"repository"      : "http://github.com/dresende/node-sql-ddl-sync.git",
 	"main"            : "./lib/Sync",
 	"scripts"         : { "test": "make test" },
 	"engines"         : { "node": "*" },
