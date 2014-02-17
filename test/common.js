@@ -1,5 +1,6 @@
 exports.dialect = null;
 exports.table   = "sql_ddl_sync_test_table";
+exports.table2  = "sql_ddl_sync_test_table2";
 
 exports.fakeDriver = {
 	query: {
@@ -79,6 +80,23 @@ exports.dropIndex = function (name) {
 		return done(unknownProtocol());
 	};
 };
+
+
+exports.addPrimaryKey = function (name, column, unique) {
+  return function (done) {
+    switch (exports.driver.dialect) {
+      case "mysql":
+        return exports.driver.execQuery("ALTER TABLE " + name + " ADD CONSTRAINT " + column + "PK PRIMARY KEY(" + column + ");");
+      case "postgresql":
+        return exports.driver.execQuery("ALTER TABLE " + name + " ADD CONSTRAINT " + column + "PK PRIMARY KEY(" + column + ");");
+      case "sqlite":
+        return exports.driver.execQuery("ALTER TABLE " + name + " ADD CONSTRAINT " + column + "PK PRIMARY KEY(" + column + ");");
+    }
+    return done(unknownProtocol());
+  };
+};
+
+
 
 function unknownProtocol() {
 	return new Error("Unknown protocol - " + exports.driver.dialect);
