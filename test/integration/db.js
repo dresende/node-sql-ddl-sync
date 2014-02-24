@@ -219,26 +219,3 @@ describe("Changing index to unique index", function () {
 		});
 	});
 });
-
-
-sync.defineCollection(common.table2, {
-  id     : { type: "number" }
-});
-
-describe("Adding a primary key", function () {
-  before(function (done) {
-    common.addPrimaryKey('id', 'table2', true)(done);
-  });
-
-  it("should add a primary key", function (done) {
-    console.log(" ----------------------------------------------------------- ")
-    sync.sync(function (err, info) {
-      should.not.exist(err);
-      should.exist(info);
-      info.should.have.property("changes", 1);
-
-      return done();
-    });
-  });
-
-});

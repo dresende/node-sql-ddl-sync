@@ -81,23 +81,6 @@ exports.dropIndex = function (name) {
 	};
 };
 
-
-exports.addPrimaryKey = function (name, column, unique) {
-  return function (done) {
-    switch (exports.driver.dialect) {
-      case "mysql":
-        return exports.driver.execQuery("ALTER TABLE " + name + " ADD CONSTRAINT " + column + "PK PRIMARY KEY(" + column + ");");
-      case "postgresql":
-        return exports.driver.execQuery("ALTER TABLE " + name + " ADD CONSTRAINT " + column + "PK PRIMARY KEY(" + column + ");");
-      case "sqlite":
-        return exports.driver.execQuery("ALTER TABLE " + name + " ADD CONSTRAINT " + column + "PK PRIMARY KEY(" + column + ");");
-    }
-    return done(unknownProtocol());
-  };
-};
-
-
-
 function unknownProtocol() {
 	return new Error("Unknown protocol - " + exports.driver.dialect);
 }
