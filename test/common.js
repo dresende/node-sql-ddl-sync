@@ -1,6 +1,5 @@
 exports.dialect = null;
 exports.table   = "sql_ddl_sync_test_table";
-exports.table2  = "sql_ddl_sync_test_table2";
 
 exports.fakeDriver = {
 	query: {
