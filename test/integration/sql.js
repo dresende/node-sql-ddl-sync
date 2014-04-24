@@ -39,7 +39,7 @@ describe("SQL.DROP_TABLE", function () {
 
 
 describe("SQL.ALTER_TABLE_ADD_COLUMN", function () {
-	it("should return an ALTER TABLE", function (done) {
+	it("should be correct", function (done) {
 		SQL.ALTER_TABLE_ADD_COLUMN({
 			name    : "fake_table",
 			column  : "my_fake_column"
@@ -47,10 +47,8 @@ describe("SQL.ALTER_TABLE_ADD_COLUMN", function () {
 
 		return done();
 	});
-});
 
-describe("SQL.ALTER_TABLE_ADD_COLUMN", function () {
-	it("should return an ALTER TABLE", function (done) {
+	it("should be correct when first is true", function (done) {
 		SQL.ALTER_TABLE_ADD_COLUMN({
 			name    : "fake_table",
 			column  : "my_fake_column",
@@ -59,15 +57,25 @@ describe("SQL.ALTER_TABLE_ADD_COLUMN", function () {
 
 		return done();
 	});
-});
 
-describe("SQL.ALTER_TABLE_ADD_COLUMN", function () {
-	it("should return an ALTER TABLE", function (done) {
+	it("should be correct when after is specified", function (done) {
 		SQL.ALTER_TABLE_ADD_COLUMN({
 			name    : "fake_table",
 			column  : "my_fake_column",
 			after   : "other_column"
 		}, driver).should.equal("ALTER TABLE $$fake_table$$ ADD my_fake_column AFTER $$other_column$$");
+
+		return done();
+	});
+});
+
+describe("SQL.ALTER_TABLE_RENAME_COLUMN", function () {
+	it("should be correct", function (done) {
+		SQL.ALTER_TABLE_RENAME_COLUMN({
+			name       : "fake_table",
+			oldColName : "usersfullname",
+			newColName : "name"
+		}, driver).should.equal("ALTER TABLE $$fake_table$$ RENAME COLUMN $$usersfullname$$ TO $$name$$");
 
 		return done();
 	});

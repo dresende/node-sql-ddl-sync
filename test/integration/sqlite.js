@@ -29,7 +29,7 @@ describe("SQLite.getType", function () {
 	});
 
 	it("should detect booleans", function (done) {
-		Dialect.getType(null, null, { type: "boolean" }, driver).value.should.equal("INTEGER");
+		Dialect.getType(null, null, { type: "boolean" }, driver).value.should.equal("INTEGER UNSIGNED");
 
 		return done();
 	});
