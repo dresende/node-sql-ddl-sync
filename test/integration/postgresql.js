@@ -13,18 +13,18 @@ describe("PostgreSQL.getType", function () {
 	});
 
 	it("should detect numbers", function (done) {
-		Dialect.getType(null, null, { type: "number" }, driver).value.should.equal("INTEGER");
-		Dialect.getType(null, null, { type: "number", size: 4 }, driver).value.should.equal("INTEGER");
-		Dialect.getType(null, null, { type: "number", size: 2 }, driver).value.should.equal("SMALLINT");
-		Dialect.getType(null, null, { type: "number", size: 8 }, driver).value.should.equal("BIGINT");
+		Dialect.getType(null, null, { type: "integer" }, driver).value.should.equal("INTEGER");
+		Dialect.getType(null, null, { type: "integer", size: 4 }, driver).value.should.equal("INTEGER");
+		Dialect.getType(null, null, { type: "integer", size: 2 }, driver).value.should.equal("SMALLINT");
+		Dialect.getType(null, null, { type: "integer", size: 8 }, driver).value.should.equal("BIGINT");
 
 		return done();
 	});
 
 	it("should detect rational numbers", function (done) {
-		Dialect.getType(null, null, { type: "number", rational: true }, driver).value.should.equal("REAL");
-		Dialect.getType(null, null, { type: "number", rational: true, size: 4 }, driver).value.should.equal("REAL");
-		Dialect.getType(null, null, { type: "number", rational: true, size: 8 }, driver).value.should.equal("DOUBLE PRECISION");
+		Dialect.getType(null, null, { type: "number"}, driver).value.should.equal("REAL");
+		Dialect.getType(null, null, { type: "number", size: 4 }, driver).value.should.equal("REAL");
+		Dialect.getType(null, null, { type: "number", size: 8 }, driver).value.should.equal("DOUBLE PRECISION");
 
 		return done();
 	});

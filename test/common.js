@@ -16,9 +16,8 @@ exports.dropColumn = function (column) {
 	return function (done) {
 		switch (exports.driver.dialect) {
 			case "mysql":
-				return exports.driver.execQuery("ALTER TABLE ?? DROP ??", [ exports.table, column ], done);
 			case "postgresql":
-				return exports.driver.execQuery("ALTER TABLE " + exports.table + " DROP " + column, done);
+				return exports.driver.execQuery("ALTER TABLE ?? DROP ??", [ exports.table, column ], done);
 		}
 		return done(unknownProtocol());
 	};
@@ -79,6 +78,12 @@ exports.dropIndex = function (name) {
 		return done(unknownProtocol());
 	};
 };
+
+exports.dropTable = function (name) {
+	return function (done) {
+		exports.driver.execQuery("DROP TABLE IF EXISTS ??", [exports.table], done);
+	};
+}
 
 function unknownProtocol() {
 	return new Error("Unknown protocol - " + exports.driver.dialect);
