@@ -16,6 +16,7 @@ describe("SQLite.getType", function () {
 		Dialect.getType(null, null, { type: "integer", size: 4 }, driver).value.should.equal("INTEGER");
 		Dialect.getType(null, null, { type: "integer", size: 2 }, driver).value.should.equal("INTEGER");
 		Dialect.getType(null, null, { type: "integer", size: 8 }, driver).value.should.equal("INTEGER");
+		Dialect.getType(null, null, { type: "number", rational: false }, driver).value.should.equal("INTEGER");
 
 		return done();
 	});
