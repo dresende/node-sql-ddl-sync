@@ -3,7 +3,7 @@
 	"name"            : "sql-ddl-sync",
 	"description"     : "NodeJS SQL DDL Synchronization",
 	"keywords"        : [ "sql", "ddl", "sync", "mysql", "postgres", "sqlite" ],
-	"version"         : "0.3.4",
+	"version"         : "0.3.5",
 	"license"         : "MIT",
 	"repository"      : "http://github.com/dresende/node-sql-ddl-sync.git",
 	"main"            : "./lib/Sync",
