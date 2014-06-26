@@ -62,6 +62,7 @@ describe("PostgreSQL.getType", function () {
 
 	it("should detect default values", function (done) {
 		Dialect.getType(null, { mapsTo: 'abc', type: "number", defaultValue: 3 }, driver).value.should.match(/DEFAULT \^\^3\^\^/);
+		Dialect.getType(null, { mapsTo: 'abc', type: 'date',   defaultValue: Date.now }, driver).value.should.equal('DATE DEFAULT now()');
 
 		return done();
 	});
