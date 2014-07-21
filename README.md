@@ -45,20 +45,19 @@ orm.connect("mysql://username:password@localhost/database", function (err, db) {
 	});
 
 	sync.defineCollection("ddl_sync_test", {
-		id     : { type : "number", primary: true, serial: true },
-		name   : { type : "text", required: true },
-		age    : { type : "number", rational: true },
-		male   : { type : "boolean" },
-		born   : { type : "date", time: true },
-		born2  : { type : "date" },
-		int2   : { type : "number", size: 2 },
-		int4   : { type : "number", size: 4 },
-		int8   : { type : "number", size: 8 },
-		float4 : { type : "number", rational: true, size: 4 },
-		float8 : { type : "number", rational: true, size: 8 },
-		type   : { type : "enum", values: [ 'dog', 'cat'], defaultValue: 'dog', required: true },
-		photo  : { type : "binary" }
-	});
+    id     : { type: "serial", key: true, serial: true },
+    name   : { type: "text", required: true },
+    age    : { type: "integer" },
+    male   : { type: "boolean" },
+    born   : { type: "date", time: true },
+    born2  : { type: "date" },
+    int2   : { type: "integer", size: 2 },
+    int4   : { type: "integer", size: 4 },
+    int8   : { type: "integer", size: 8 },
+    float4 : { type: "number",  size: 4 },
+    float8 : { type: "number",  size: 8 },
+    photo  : { type: "binary" }
+  });
 
 	sync.sync(function (err) {
 		if (err) {
