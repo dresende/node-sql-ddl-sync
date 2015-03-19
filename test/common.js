@@ -9,6 +9,13 @@ exports.fakeDriver = {
 		escapeVal : function (val) {
 			return "^^" + val + "^^";
 		}
+	},
+	customTypes: {
+		json: {
+			datastoreType: function (prop) {
+				return 'JSON';
+			}
+		}
 	}
 };
 

@@ -54,6 +54,12 @@ describe("PostgreSQL.getType", function () {
 		return done();
 	});
 
+	it("should detect custom types", function (done) {
+		Dialect.getType(null, { mapsTo: 'abc', type: "json" }, driver).value.should.equal("JSON");
+
+		return done();
+	});
+
 	it("should detect required items", function (done) {
 		Dialect.getType(null, { mapsTo: 'abc', type: "boolean", required: true }, driver).value.should.match(/NOT NULL/);
 
