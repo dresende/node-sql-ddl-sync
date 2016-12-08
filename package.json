@@ -3,7 +3,7 @@
 	"name"            : "sql-ddl-sync",
 	"description"     : "NodeJS SQL DDL Synchronization",
 	"keywords"        : [ "sql", "ddl", "sync", "mysql", "postgres", "sqlite" ],
-	"version"         : "0.3.11",
+	"version"         : "0.3.12",
 	"license"         : "MIT",
 	"repository"      : "http://github.com/dresende/node-sql-ddl-sync.git",
 	"main"            : "./lib/Sync",
@@ -11,12 +11,12 @@
 	"engines"         : { "node": "*" },
 	"analyse"         : false,
 	"dependencies"    : {
-		"lodash"        : "2.4.1"
+		"lodash"        : "4.17.2"
 	},
 	"devDependencies" : {
-		"mocha"         : "1.14.0",
-		"should"        : "2.0.2",
-		"commander"     : "~2.0.0",
+		"mocha"         : "3.2.0",
+		"should"        : "11.1.1",
+		"commander"     : "2.9.0",
 		"orm"           : "2.1.23"
 	}
 }
