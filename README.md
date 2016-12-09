@@ -28,9 +28,9 @@ Run once and you'll see table `ddl_sync_test` appear in your database. Then make
 and run the code again. Your table should always return to the same structure.
 
 ```js
-var orm    = require("orm");
-var mysql  = require("mysql");
-var Sync   = require("sql-ddl-sync").Sync;
+var orm   = require("orm");
+var mysql = require("mysql");
+var Sync  = require("sql-ddl-sync").Sync;
 
 orm.connect("mysql://username:password@localhost/database", function (err, db) {
 	if (err) throw err;
