@@ -1,22 +1,33 @@
 {
-	"author"          : "Diogo Resende <dresende@thinkdigital.pt>",
-	"name"            : "sql-ddl-sync",
-	"description"     : "NodeJS SQL DDL Synchronization",
-	"keywords"        : [ "sql", "ddl", "sync", "mysql", "postgres", "sqlite" ],
-	"version"         : "0.3.12",
-	"license"         : "MIT",
-	"repository"      : "http://github.com/dresende/node-sql-ddl-sync.git",
-	"main"            : "./lib/Sync",
-	"scripts"         : { "test": "make test" },
-	"engines"         : { "node": "*" },
-	"analyse"         : false,
-	"dependencies"    : {
-		"lodash"        : "4.17.2"
+	"author": "Diogo Resende <dresende@thinkdigital.pt>",
+	"name": "sql-ddl-sync",
+	"description": "NodeJS SQL DDL Synchronization",
+	"keywords": [
+		"sql",
+		"ddl",
+		"sync",
+		"mysql",
+		"postgres",
+		"sqlite"
+	],
+	"version": "0.3.13",
+	"license": "MIT",
+	"repository": "http://github.com/dresende/node-sql-ddl-sync.git",
+	"main": "./lib/index",
+	"scripts": {
+		"test": "make test"
 	},
-	"devDependencies" : {
-		"mocha"         : "3.2.0",
-		"should"        : "11.1.1",
-		"commander"     : "2.9.0",
-		"orm"           : "3.2.0"
+	"engines": {
+		"node": "*"
+	},
+	"analyse": false,
+	"dependencies": {
+		"lodash": "4.17.4"
+	},
+	"devDependencies": {
+		"mocha": "3.4.2",
+		"should": "11.2.1",
+		"commander": "2.9.0",
+		"orm": "3.2.3"
 	}
 }

@@ -1,4 +1,4 @@
-var Sync    = require("../../lib/Sync").Sync;
+var index   = require("../../lib/index").Sync;
 var common  = require("../common");
 var should  = require("should");
 var sync    = new Sync({
