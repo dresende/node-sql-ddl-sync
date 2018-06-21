@@ -1,3 +1,6 @@
+### v0.3.14 - 2018-06-21
+- Update dependencies
+
 ### v0.3.13 - 2017-07-17
 - Expose `.dialects`
 - Update dependencies
@@ -7,4 +10,3 @@
 
 ### v0.3.11 - 2015-03-19
 - Add support for custom types
-
