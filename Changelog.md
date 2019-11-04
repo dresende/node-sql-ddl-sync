@@ -1,3 +1,9 @@
+### v0.3.16 - 2019-11-04
+- Update lodash & relax version dependency ([#30](../../issues/30))
+
+### v0.3.15 - 2019-07-13
+- Update lodash
+
 ### v0.3.14 - 2018-06-21
 - Update dependencies
 
