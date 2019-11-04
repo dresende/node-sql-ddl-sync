@@ -22,7 +22,7 @@ describe("index", function () {
         var dialect = index.dialect(dialectName);
 
         should.exist(dialect);
-        console.log(dialect);
+        //console.log(dialect);
       });
     });
   });
