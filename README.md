@@ -14,6 +14,7 @@ npm install sql-ddl-sync
 
 - MySQL
 - PostgreSQL
+- SQLite
 
 ## About
 
@@ -70,6 +71,12 @@ orm.connect("mysql://username:password@localhost/database", function (err, db) {
 	});
 });
 
+```
+
+## PostgreSQL UUID
+
+```js
+{ type: 'uuid', defaultExpression: 'uuid_generate_v4()' }
 ```
 
 ## Test

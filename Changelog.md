@@ -1,3 +1,7 @@
+### v0.3.17 - 2022-01-10
+- Add UUID support for PostgreSQL
+- Add support for `defaultExpression` ie. `uuid_generate_v4()`
+
 ### v0.3.16 - 2019-11-04
 - Update lodash & relax version dependency ([#30](../../issues/30))
 
