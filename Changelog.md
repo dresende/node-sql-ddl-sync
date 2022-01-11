@@ -1,6 +1,9 @@
+### v0.3.18 - 2022-01-11
+- Add support for `defaultExpression` ie. `uuid()` for [MySQL 8.0.13+](https://dev.mysql.com/doc/refman/8.0/en/data-type-defaults.html)
+
 ### v0.3.17 - 2022-01-10
 - Add UUID support for PostgreSQL
-- Add support for `defaultExpression` ie. `uuid_generate_v4()`
+- Add support for `defaultExpression` ie. `uuid_generate_v4()` for PostgreSQL
 
 ### v0.3.16 - 2019-11-04
 - Update lodash & relax version dependency ([#30](../../issues/30))
