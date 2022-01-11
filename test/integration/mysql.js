@@ -87,4 +87,11 @@ describe("MySQL.getType", function () {
 
 		return done();
 	});
+
+	it("should detect default expressions", function () {
+		should.equal(
+			Dialect.getType(null, { mapsTo: 'abc', type: 'text', defaultExpression: 'uuid()' }, driver).value,
+			'VARCHAR(255) DEFAULT (uuid())'
+		);
+	});
 });
