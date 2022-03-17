@@ -2,6 +2,20 @@ exports.dialect = null;
 exports.table   = "sql_ddl_sync_test_table";
 
 exports.fakeDriver = {
+	generateQuery: function (sql, params) {
+		var count = 0;
+		return sql.replace(/\?+/g, function (match) {
+			var val = params[count++];
+
+			if (match == '??') {
+				return exports.fakeDriver.query.escapeId(val);
+			} else if (match == '?') {
+				return exports.fakeDriver.query.escapeVal(val);
+			} else {
+				return "unexpected match: " + match;
+			}
+		});
+	},
 	query: {
 		escapeId  : function (id) {
 			return "$$" + id + "$$";

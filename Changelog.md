@@ -1,3 +1,6 @@
+### v0.4.0 - 2022-03-16
+- Add `renameCollection` function
+
 ### v0.3.18 - 2022-01-11
 - Add support for `defaultExpression` ie. `uuid()` for [MySQL 8.0.13+](https://dev.mysql.com/doc/refman/8.0/en/data-type-defaults.html)
 
