@@ -37,6 +37,14 @@ describe("SQL.DROP_TABLE", function () {
 	});
 });
 
+describe("SQL.ALTER_TABLE_RENAME", function () {
+	it("should return a ALTER TABLE RENAME", function () {
+		SQL.ALTER_TABLE_RENAME({
+			name    : "fake_table",
+			newName : "fake_table2"
+		}, driver).should.equal("ALTER TABLE $$fake_table$$ RENAME TO $$fake_table2$$");
+	});
+});
 
 describe("SQL.ALTER_TABLE_ADD_COLUMN", function () {
 	it("should be correct", function (done) {
